@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductEntity } from './application/entities/products.entity';
+import { ProductController } from './application/controllers/products.controller';
+import { ProductsModule } from './application/modules/products.module';
+import { ProductService } from './application/services/products.service';
 
 @Module({
   imports: [
@@ -17,14 +21,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities: [],
+      entities: [ProductEntity],
       extra: {
         ssl: true,
       },
     }),
-    TypeOrmModule.forFeature([]),
+    TypeOrmModule.forFeature([ProductEntity]),
+    ProductsModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [ProductController],
+  providers: [ProductService],
 })
 export class AppModule {}

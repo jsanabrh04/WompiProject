@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { Product } from './products.entity';
+import { ProductEntity } from './products.entity';
 import { Customer } from './customers.entity';
 
 @Entity()
@@ -14,8 +14,8 @@ export class Transaction {
   @PrimaryGeneratedColumn()
   idTransaction: number;
 
-  @ManyToOne(() => Product)
-  idProduct: Product;
+  @ManyToOne(() => ProductEntity)
+  idProduct: ProductEntity;
 
   @ManyToOne(() => Customer)
   idCustomer: Customer;
