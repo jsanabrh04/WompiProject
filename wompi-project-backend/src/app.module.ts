@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductEntity } from './application/entities/products.entity';
-import { ProductController } from './application/controllers/products.controller';
+import { ProductsEntity } from './application/entities/products.entity';
+import { ProductsController } from './application/controllers/products.controller';
 import { ProductsModule } from './application/modules/products.module';
-import { ProductService } from './application/services/products.service';
+import { ProductsService } from './application/services/products.service';
+import { CustomersEntity } from './application/entities/customers.entity';
+import { CustomersController } from './application/controllers/customers.controller';
+import { CustomersService } from './application/services/customers.service';
 
 @Module({
   imports: [
@@ -21,15 +24,15 @@ import { ProductService } from './application/services/products.service';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities: [ProductEntity],
+      entities: [ProductsEntity, CustomersEntity],
       extra: {
         ssl: true,
       },
     }),
-    TypeOrmModule.forFeature([ProductEntity]),
+    TypeOrmModule.forFeature([ProductsEntity, CustomersEntity]),
     ProductsModule,
   ],
-  controllers: [ProductController],
-  providers: [ProductService],
+  controllers: [ProductsController, CustomersController],
+  providers: [ProductsService, CustomersService],
 })
 export class AppModule {}

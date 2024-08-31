@@ -15,7 +15,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Customer')
 @Controller('Customers')
-export class CustomerController {
+export class CustomersController {
   constructor(private readonly customerService: CustomersService) {}
 
   @Post()

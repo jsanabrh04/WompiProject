@@ -13,7 +13,7 @@ import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Deliverys')
 @Controller('Deliverys')
-export class DeliveryController {
+export class DeliverysController {
   constructor(private readonly deliveryService: DeliverysService) {}
 
   @Post()

@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TransactionsEntity } from '../entities/transactions.entity';
 import { CreateTransactionDto } from '../dtos/transactions/create-trasactions.dto';
-import { ProductEntity } from '../entities/products.entity';
+import { ProductsEntity } from '../entities/products.entity';
 import { CustomersEntity } from '../entities/customers.entity';
 
 @Injectable()
@@ -12,8 +12,8 @@ export class TransactionsService {
     @InjectRepository(TransactionsEntity)
     private transactionRepository: Repository<TransactionsEntity>,
 
-    @InjectRepository(ProductEntity)
-    private productRepository: Repository<ProductEntity>,
+    @InjectRepository(ProductsEntity)
+    private productRepository: Repository<ProductsEntity>,
 
     @InjectRepository(CustomersEntity)
     private customerRepository: Repository<CustomersEntity>,
