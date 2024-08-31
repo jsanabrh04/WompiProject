@@ -6,7 +6,7 @@ import { CreateCustomerDto } from '../dtos/customers/create-customers.dto';
 import { UpdateCustomerDto } from '../dtos/customers/update-customers.dto';
 
 @Injectable()
-export class CustomerService {
+export class CustomersService {
   constructor(
     @InjectRepository(CustomersEntity)
     private customerRepository: Repository<CustomersEntity>,
