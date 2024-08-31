@@ -10,7 +10,7 @@ import { ProductEntity } from './products.entity';
 import { Customer } from './customers.entity';
 
 @Entity()
-export class Transaction {
+export class TransactionEntity {
   @PrimaryGeneratedColumn()
   idTransaction: number;
 
@@ -29,14 +29,11 @@ export class Transaction {
   @Column({ type: 'varchar', length: 50 })
   paymentMethod: string;
 
-  @Column({ type: 'varchar', length: 50 })
-  status: string;
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  wompiStatus: string;
 
   @Column({ type: 'varchar', length: 50, nullable: true })
   wompiTransactionId: string;
-
-  @Column({ type: 'varchar', length: 50, nullable: true })
-  wompiStatus: string;
 
   @Column({ type: 'text', nullable: true })
   wompiPaymentUrl: string;
