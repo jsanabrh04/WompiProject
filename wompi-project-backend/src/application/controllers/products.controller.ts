@@ -8,31 +8,33 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
-import { ProductService } from '../services/products.service';
+import { ProductsService } from '../services/products.service';
 import { CreateProductDto } from '../dtos/products/create-products.dto';
 import { UpdateProductDto } from '../dtos/products/update-products.dto';
-import { ProductEntity } from '../entities/products.entity';
+import { ProductsEntity } from '../entities/products.entity';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Products')
 @Controller('products')
-export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+export class ProductsController {
+  constructor(private readonly productService: ProductsService) {}
 
   @Post()
   async create(
     @Body() createProductDto: CreateProductDto,
-  ): Promise<ProductEntity> {
+  ): Promise<ProductsEntity> {
     return this.productService.create(createProductDto);
   }
 
   @Get()
-  async findAll(): Promise<ProductEntity[]> {
+  async findAll(): Promise<ProductsEntity[]> {
     return this.productService.findAll();
   }
 
   @Get(':idProduct')
-  async findOne(@Param('idProduct') idProduct: number): Promise<ProductEntity> {
+  async findOne(
+    @Param('idProduct') idProduct: number,
+  ): Promise<ProductsEntity> {
     return this.productService.findOne(idProduct);
   }
 
@@ -40,7 +42,7 @@ export class ProductController {
   async update(
     @Param('idProduct') idProduct: number,
     @Body() updateProductDto: UpdateProductDto,
-  ): Promise<ProductEntity> {
+  ): Promise<ProductsEntity> {
     return this.productService.update(idProduct, updateProductDto);
   }
 

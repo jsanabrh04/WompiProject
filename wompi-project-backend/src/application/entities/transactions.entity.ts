@@ -6,19 +6,19 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { ProductEntity } from './products.entity';
-import { Customer } from './customers.entity';
+import { ProductsEntity } from './products.entity';
+import { CustomersEntity } from './customers.entity';
 
 @Entity()
-export class Transaction {
+export class TransactionsEntity {
   @PrimaryGeneratedColumn()
   idTransaction: number;
 
-  @ManyToOne(() => ProductEntity)
-  idProduct: ProductEntity;
+  @ManyToOne(() => ProductsEntity)
+  idProduct: ProductsEntity;
 
-  @ManyToOne(() => Customer)
-  idCustomer: Customer;
+  @ManyToOne(() => CustomersEntity)
+  idCustomer: CustomersEntity;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
@@ -29,14 +29,11 @@ export class Transaction {
   @Column({ type: 'varchar', length: 50 })
   paymentMethod: string;
 
-  @Column({ type: 'varchar', length: 50 })
-  status: string;
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  wompiStatus: string;
 
   @Column({ type: 'varchar', length: 50, nullable: true })
   wompiTransactionId: string;
-
-  @Column({ type: 'varchar', length: 50, nullable: true })
-  wompiStatus: string;
 
   @Column({ type: 'text', nullable: true })
   wompiPaymentUrl: string;

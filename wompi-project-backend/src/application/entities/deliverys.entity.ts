@@ -7,16 +7,16 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
-import { Transaction } from './transactions.entity';
+import { TransactionsEntity } from './transactions.entity';
 
 @Entity()
-export class Delivery {
+export class DeliverysEntity {
   @PrimaryGeneratedColumn()
   idDeliverie: number;
 
-  @OneToOne(() => Transaction)
+  @OneToOne(() => TransactionsEntity)
   @JoinColumn()
-  idTransaction: Transaction;
+  idTransaction: TransactionsEntity;
 
   @Column({ type: 'text' })
   address: string;
