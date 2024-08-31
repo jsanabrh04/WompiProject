@@ -8,6 +8,15 @@ import { ProductsService } from './application/services/products.service';
 import { CustomersEntity } from './application/entities/customers.entity';
 import { CustomersController } from './application/controllers/customers.controller';
 import { CustomersService } from './application/services/customers.service';
+import { DeliverysEntity } from './application/entities/deliverys.entity';
+import { DeliverysController } from './application/controllers/deliverys.controller';
+import { DeliverysService } from './application/services/deliverys.service';
+import { TransactionsEntity } from './application/entities/transactions.entity';
+import { CustomersModule } from './application/modules/customers.module';
+import { DeliverysModule } from './application/modules/deliverys.module';
+import { TransactionsModule } from './application/modules/transactions.module';
+import { TransactionsController } from './application/controllers/transactions.controller';
+import { TransactionsService } from './application/services/transactions.service';
 
 @Module({
   imports: [
@@ -24,15 +33,38 @@ import { CustomersService } from './application/services/customers.service';
       database: process.env.POSTGRES_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      entities: [ProductsEntity, CustomersEntity],
+      entities: [
+        ProductsEntity,
+        CustomersEntity,
+        DeliverysEntity,
+        TransactionsEntity,
+      ],
       extra: {
         ssl: true,
       },
     }),
-    TypeOrmModule.forFeature([ProductsEntity, CustomersEntity]),
+    TypeOrmModule.forFeature([
+      ProductsEntity,
+      CustomersEntity,
+      DeliverysEntity,
+      TransactionsEntity,
+    ]),
     ProductsModule,
+    CustomersModule,
+    DeliverysModule,
+    TransactionsModule,
   ],
-  controllers: [ProductsController, CustomersController],
-  providers: [ProductsService, CustomersService],
+  controllers: [
+    ProductsController,
+    CustomersController,
+    DeliverysController,
+    TransactionsController,
+  ],
+  providers: [
+    ProductsService,
+    CustomersService,
+    DeliverysService,
+    TransactionsService,
+  ],
 })
 export class AppModule {}
