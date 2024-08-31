@@ -7,18 +7,18 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { ProductEntity } from './products.entity';
-import { Customer } from './customers.entity';
+import { CustomersEntity } from './customers.entity';
 
 @Entity()
-export class TransactionEntity {
+export class TransactionsEntity {
   @PrimaryGeneratedColumn()
   idTransaction: number;
 
   @ManyToOne(() => ProductEntity)
   idProduct: ProductEntity;
 
-  @ManyToOne(() => Customer)
-  idCustomer: Customer;
+  @ManyToOne(() => CustomersEntity)
+  idCustomer: CustomersEntity;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
